@@ -1,4 +1,4 @@
-package com.example.webapp
+package com.phishguard.webapp
 
 import io.flutter.embedding.android.FlutterActivity
 

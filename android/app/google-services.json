@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "6353235854",
+    "project_id": "phisguard-a7118",
+    "storage_bucket": "phisguard-a7118.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6353235854:android:a19e3a44640efd7c1d7edf",
+        "android_client_info": {
+          "package_name": "com.phishguard.webapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVhCXE_3o8NA6jl8haKsOe4ojeTgaWVJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

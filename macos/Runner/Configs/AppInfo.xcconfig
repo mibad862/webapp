@@ -8,7 +8,7 @@
 PRODUCT_NAME = webapp
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.webapp
+PRODUCT_BUNDLE_IDENTIFIER = com.phishguard.webapp
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2025 com.example. All rights reserved.

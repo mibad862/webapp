@@ -1,0 +1,36 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "phisguard-a7118",
+          "appId": "1:6353235854:android:a19e3a44640efd7c1d7edf",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "phisguard-a7118",
+          "configurations": {
+            "android": "1:6353235854:android:a19e3a44640efd7c1d7edf",
+            "ios": "1:6353235854:ios:fc307e7a66703dfd1d7edf",
+            "macos": "1:6353235854:ios:fc307e7a66703dfd1d7edf",
+            "web": "1:6353235854:web:7a339fbf371f0c3a1d7edf",
+            "windows": "1:6353235854:web:aa9ce6f1c166841a1d7edf"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "frameworksBackend": {
+      "region": "us-central1"
+    }
+  }
+}
