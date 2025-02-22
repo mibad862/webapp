@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 void main() {
-  runApp(PhishGuardApp());
+  runApp(const PhishGuardApp());
 }
 
 class PhishGuardApp extends StatelessWidget {
+  const PhishGuardApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     // Simulate a network call
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     setState(() {
       _isLoading = false;
@@ -53,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             // Header with Gradient
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.blue.shade900, Colors.blue.shade700],
@@ -61,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   end: Alignment.bottomRight,
                 ),
                 boxShadow: [
-                  BoxShadow(
+                  const BoxShadow(
                     color: Colors.black12,
                     blurRadius: 10,
                     offset: Offset(0, 5),
@@ -71,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'PhishGuard',
                     style: TextStyle(
                       fontSize: 24,
@@ -83,31 +85,31 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Home',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Tools',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'About',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Contact',
                           style: TextStyle(color: Colors.white),
                         ),
@@ -120,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Hero Section with Gradient
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 100),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.blue.shade50, Colors.white],
@@ -138,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.blue.shade900,
                     ),
                   ).animate().fadeIn(delay: 300.ms).slideY(begin: -0.5),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     'Enter a URL to check if it\'s safe or phishing',
                     style: TextStyle(
@@ -146,15 +148,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.grey.shade700,
                     ),
                   ).animate().fadeIn(delay: 500.ms).slideY(begin: -0.5),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Container(
                     width: 600,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50),
                       boxShadow: [
-                        BoxShadow(
+                        const BoxShadow(
                           color: Colors.black12,
                           blurRadius: 10,
                           offset: Offset(0, 5),
@@ -165,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Expanded(
                           child: TextField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: 'Enter URL to check...',
                               border: InputBorder.none,
                             ),
@@ -176,11 +178,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         ElevatedButton(
                           onPressed: _checkPhishing,
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
@@ -188,8 +190,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             backgroundColor: Colors.blue.shade900,
                           ),
                           child: _isLoading
-                              ? CircularProgressIndicator(color: Colors.white)
-                              : Text(
+                              ? const CircularProgressIndicator(color: Colors.white)
+                              : const Text(
                             'Check',
                             style: TextStyle(
                                 fontSize: 16, color: Colors.white),
@@ -204,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Features Section
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
               color: Colors.white,
               child: Column(
                 children: [
@@ -216,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.blue.shade900,
                     ),
                   ).animate().fadeIn(delay: 300.ms).slideY(begin: -0.5),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Wrap(
                     spacing: 20,
                     runSpacing: 20,
@@ -252,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // How It Works Section with Gradient
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.blue.shade50, Colors.white],
@@ -270,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.blue.shade900,
                     ),
                   ).animate().fadeIn(delay: 300.ms).slideY(begin: -0.5),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -300,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Testimonials Section
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
               color: Colors.white,
               child: Column(
                 children: [
@@ -312,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.blue.shade900,
                     ),
                   ).animate().fadeIn(delay: 300.ms).slideY(begin: -0.5),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Wrap(
                     spacing: 20,
                     runSpacing: 20,
@@ -337,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Footer with Gradient
             Container(
-              padding: EdgeInsets.symmetric(vertical: 40),
+              padding: const EdgeInsets.symmetric(vertical: 40),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.blue.shade900, Colors.blue.shade700],
@@ -345,7 +347,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   end: Alignment.bottomRight,
                 ),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   '© 2023 PhishGuard. All rights reserved.',
                   style: TextStyle(
@@ -366,12 +368,12 @@ class _HomeScreenState extends State<HomeScreen> {
         required String description}) {
     return Container(
       width: 280,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
-          BoxShadow(
+          const BoxShadow(
             color: Colors.black12,
             blurRadius: 10,
             offset: Offset(0, 5),
@@ -381,7 +383,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         children: [
           Icon(icon, size: 50, color: Colors.blue.shade900),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             title,
             style: TextStyle(
@@ -390,7 +392,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.blue.shade900,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             description,
             textAlign: TextAlign.center,
@@ -410,12 +412,12 @@ class _HomeScreenState extends State<HomeScreen> {
         required String description}) {
     return Container(
       width: 280,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
-          BoxShadow(
+          const BoxShadow(
             color: Colors.black12,
             blurRadius: 10,
             offset: Offset(0, 5),
@@ -429,14 +431,14 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: Colors.blue.shade900,
             child: Text(
               step,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             title,
             style: TextStyle(
@@ -445,7 +447,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.blue.shade900,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             description,
             textAlign: TextAlign.center,
@@ -465,12 +467,12 @@ class _HomeScreenState extends State<HomeScreen> {
         required String testimonial}) {
     return Container(
       width: 400,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
-          BoxShadow(
+          const BoxShadow(
             color: Colors.black12,
             blurRadius: 10,
             offset: Offset(0, 5),
@@ -482,9 +484,9 @@ class _HomeScreenState extends State<HomeScreen> {
           CircleAvatar(
             radius: 40,
             backgroundColor: Colors.blue.shade900,
-            child: Icon(Icons.person, size: 50, color: Colors.white),
+            child: const Icon(Icons.person, size: 50, color: Colors.white),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             name,
             style: TextStyle(
@@ -493,7 +495,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.blue.shade900,
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             role,
             style: TextStyle(
@@ -501,7 +503,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.grey.shade700,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             testimonial,
             textAlign: TextAlign.center,
