@@ -41,13 +41,17 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'PhishGuard',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
+                // const Text(
+                //   'PhishGuard',
+                //   style: TextStyle(
+                //       fontSize: 24,
+                //       fontWeight: FontWeight.bold,
+                //       color: Colors.white),
+                // ),
+                SizedBox(
+                    height: 60,
+                    child: Image.asset(
+                        color: Colors.white, 'assets/PHISHINGGUARD-LOGO.png')),
                 Row(
                   children: [
                     _navButton(
@@ -92,12 +96,18 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    bool isMobile = screenWidth < 800; // Responsive Check
+
     return SingleChildScrollView(
       child: Column(
         children: [
-          // Hero Section
+          // 🔹 Hero Section
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+            padding: EdgeInsets.symmetric(
+              horizontal: isMobile ? 10 : 20,
+              vertical: isMobile ? 60 : 100,
+            ),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [Colors.blue.shade50, Colors.white],
@@ -109,31 +119,38 @@ class HomeContent extends StatelessWidget {
               children: [
                 Text(
                   'Phishing URL Checker',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue.shade900),
+                    fontSize: isMobile ? 28 : 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue.shade900,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   'Enter a URL to check if it\'s safe or phishing',
-                  style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: isMobile ? 14 : 16,
+                    color: Colors.grey.shade700,
+                  ),
                 ),
                 const SizedBox(height: 40),
 
-                // Input Field
+                // 🔹 Input Field (Responsive)
                 Container(
-                  width: 600,
+                  width: isMobile ? screenWidth * 0.9 : 600,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: [
-                      BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 10,
-                          offset: Offset(0, 5))
+                      const BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
                     ],
                   ),
                   child: Row(
@@ -141,8 +158,9 @@ class HomeContent extends StatelessWidget {
                       Expanded(
                         child: TextField(
                           decoration: const InputDecoration(
-                              hintText: 'Enter URL to check...',
-                              border: InputBorder.none),
+                            hintText: 'Enter URL to check...',
+                            border: InputBorder.none,
+                          ),
                           onChanged: (value) => controller.url.value = value,
                         ),
                       ),
@@ -150,46 +168,55 @@ class HomeContent extends StatelessWidget {
                       Obx(() => ElevatedButton(
                             onPressed: controller.checkPhishing,
                             style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 15),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: isMobile ? 20 : 30,
+                                vertical: isMobile ? 10 : 15,
+                              ),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
                               backgroundColor: Colors.blue.shade900,
                             ),
                             child: controller.isLoading.value
                                 ? const CircularProgressIndicator(
                                     color: Colors.white)
-                                : const Text('Check',
+                                : const Text(
+                                    'Check',
                                     style: TextStyle(
-                                        fontSize: 16, color: Colors.white)),
+                                        fontSize: 16, color: Colors.white),
+                                  ),
                           )),
                     ],
                   ),
                 ),
                 const SizedBox(height: 20),
 
-                // Result Display
+                // 🔹 Result Display
                 Obx(() => Text(
                       controller.result.value,
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue.shade900),
+                        fontSize: isMobile ? 18 : 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue.shade900,
+                      ),
                     )),
               ],
             ),
           ),
 
-          // Features Section
+          // 🔹 Features Section
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: isMobile ? 40 : 60,
+            ),
             color: Colors.white,
             child: Column(
               children: [
                 Text(
                   'Why Choose PhishGuard?',
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: isMobile ? 24 : 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue.shade900,
                   ),
@@ -198,39 +225,43 @@ class HomeContent extends StatelessWidget {
                 Wrap(
                   spacing: 20,
                   runSpacing: 20,
+                  alignment: WrapAlignment.center,
                   children: [
                     _buildFeatureCard(
                       icon: Icons.security,
                       title: 'Advanced Security',
                       description:
                           'Uses cutting-edge algorithms to detect phishing websites.',
-                    ).animate().fadeIn(delay: 500.ms).slideY(begin: -0.5),
+                    ),
                     _buildFeatureCard(
                       icon: Icons.speed,
                       title: 'Fast Results',
                       description:
                           'Get instant results with minimal waiting time.',
-                    ).animate().fadeIn(delay: 700.ms).slideY(begin: -0.5),
+                    ),
                     _buildFeatureCard(
                       icon: Icons.verified_user,
                       title: 'Reliable',
                       description: 'Trusted by thousands of users worldwide.',
-                    ).animate().fadeIn(delay: 900.ms).slideY(begin: -0.5),
+                    ),
                     _buildFeatureCard(
                       icon: Icons.phone_android,
                       title: 'Cross-Platform',
                       description:
                           'Works seamlessly on all devices and platforms.',
-                    ).animate().fadeIn(delay: 1100.ms).slideY(begin: -0.5),
+                    ),
                   ],
                 ),
               ],
             ),
           ),
 
-          // How It Works Section with Gradient
+          // 🔹 How It Works Section
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: isMobile ? 40 : 60,
+            ),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [Colors.blue.shade50, Colors.white],
@@ -243,40 +274,55 @@ class HomeContent extends StatelessWidget {
                 Text(
                   'How It Works',
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: isMobile ? 24 : 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue.shade900,
                   ),
                 ).animate().fadeIn(delay: 300.ms).slideY(begin: -0.5),
                 const SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _buildStepCard(
-                      step: '1',
-                      title: 'Enter URL',
-                      description:
-                          'Enter the URL you want to check in the input field.',
-                    ).animate().fadeIn(delay: 500.ms).slideY(begin: -0.5),
-                    _buildStepCard(
-                      step: '2',
-                      title: 'Click Check',
-                      description:
-                          'Click the "Check" button to analyze the URL.',
-                    ).animate().fadeIn(delay: 700.ms).slideY(begin: -0.5),
-                    _buildStepCard(
-                      step: '3',
-                      title: 'Get Results',
-                      description:
-                          'Receive instant feedback on whether the URL is safe or phishing.',
-                    ).animate().fadeIn(delay: 900.ms).slideY(begin: -0.5),
-                  ],
-                ),
+
+                // Steps (Responsive: Wrap for Mobile, Row for Desktop)
+                isMobile
+                    ? Column(
+                        children: [
+                          _buildStepCard(
+                              step: '1',
+                              title: 'Enter URL',
+                              description: 'Enter the URL to check.'),
+                          SizedBox(height: 10),
+                          _buildStepCard(
+                              step: '2',
+                              title: 'Click Check',
+                              description: 'Click the "Check" button.'),
+                          SizedBox(height: 10),
+                          _buildStepCard(
+                              step: '3',
+                              title: 'Get Results',
+                              description: 'See if it’s phishing or safe.'),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _buildStepCard(
+                              step: '1',
+                              title: 'Enter URL',
+                              description: 'Enter the URL to check.'),
+                          _buildStepCard(
+                              step: '2',
+                              title: 'Click Check',
+                              description: 'Click the "Check" button.'),
+                          _buildStepCard(
+                              step: '3',
+                              title: 'Get Results',
+                              description: 'See if it’s phishing or safe.'),
+                        ],
+                      ),
               ],
             ),
           ),
 
-          // Footer with Gradient
+          // 🔹 Footer
           Container(
             padding: const EdgeInsets.symmetric(vertical: 40),
             decoration: BoxDecoration(
@@ -289,9 +335,7 @@ class HomeContent extends StatelessWidget {
             child: const Center(
               child: Text(
                 '© 2023 PhishGuard. All rights reserved.',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),
@@ -308,36 +352,20 @@ class HomeContent extends StatelessWidget {
       width: 280,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            const BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10,
-              offset: Offset(0, 5),
-            ),
-          ]),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(
+              color: Colors.black12, blurRadius: 10, offset: Offset(0, 5)),
+        ],
+      ),
       child: Column(
         children: [
           Icon(icon, size: 50, color: Colors.blue.shade900),
-          const SizedBox(height: 20),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue.shade900,
-            ),
-          ),
           const SizedBox(height: 10),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey.shade700,
-            ),
-          ),
+          Text(title,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(description, textAlign: TextAlign.center),
         ],
       ),
     );

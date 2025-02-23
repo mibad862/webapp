@@ -1,10 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart'; // For animations
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:webapp/controller/contact_us_controller.dart';
+import 'package:webapp/utils/app_color.dart';
 
 class ContactUsScreen extends StatelessWidget {
   final ContactUsController controller = Get.put(ContactUsController());
@@ -15,9 +16,9 @@ class ContactUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue.shade50, Colors.white],
+            colors: [AppColors.backgroundStart, AppColors.backgroundEnd],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -41,13 +42,12 @@ class ContactUsScreen extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   padding: const EdgeInsets.all(25),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(
-                        0.25), // Slightly darker opacity for better visibility
+                    color: AppColors.glassBackground,
                     borderRadius: BorderRadius.circular(25),
-                    border: Border.all(color: Colors.white.withOpacity(0.4)),
+                    border: Border.all(color: AppColors.glassBorder),
                     boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.15),
+                      const BoxShadow(
+                        color: AppColors.shadowColor,
                         blurRadius: 25,
                         spreadRadius: 6,
                       ),
@@ -56,10 +56,7 @@ class ContactUsScreen extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                          sigmaX: 12,
-                          sigmaY:
-                              12), // Slightly stronger blur for a more defined glass effect
+                      filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
                       child: Column(
                         children: [
                           const Text(
@@ -67,14 +64,13 @@ class ContactUsScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              color: Colors.blueAccent,
+                              color: AppColors.textPrimary,
                               letterSpacing: 1.2,
                             ),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 20),
 
-                          // Name Field with Icon
                           _buildAnimatedTextField(
                             label: 'Name',
                             onChanged: (value) => controller.name.value = value,
@@ -82,7 +78,6 @@ class ContactUsScreen extends StatelessWidget {
 
                           const SizedBox(height: 20),
 
-                          // Email Field with Icon
                           _buildAnimatedTextField(
                             label: 'Email',
                             onChanged: (value) =>
@@ -91,7 +86,6 @@ class ContactUsScreen extends StatelessWidget {
 
                           const SizedBox(height: 20),
 
-                          // Message Field with Icon
                           _buildAnimatedTextField(
                             label: 'Message',
                             onChanged: (value) =>
@@ -101,17 +95,17 @@ class ContactUsScreen extends StatelessWidget {
 
                           const SizedBox(height: 30),
 
-                          // Submit Button with Animation and Gradient Effect
+                          // Submit Button
                           Obx(
                             () => AnimatedContainer(
                               duration: const Duration(milliseconds: 300),
                               width: controller.isLoading.value ? 50 : 160,
                               height: 50,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
-                                    Colors.blue.shade900,
-                                    Colors.blue.shade600
+                                    AppColors.buttonGradientStart,
+                                    AppColors.buttonGradientEnd
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -121,7 +115,7 @@ class ContactUsScreen extends StatelessWidget {
                                 boxShadow: [
                                   BoxShadow(
                                     color:
-                                        Colors.blue.shade900.withOpacity(0.3),
+                                        AppColors.buttonShadow.withOpacity(0.3),
                                     blurRadius: 15,
                                     spreadRadius: 3,
                                   ),
@@ -156,9 +150,10 @@ class ContactUsScreen extends StatelessWidget {
                                 .fadeIn(delay: 1100.ms)
                                 .slideY(begin: -0.5)
                                 .scale(
-                                    begin: Offset(0.95, 0.95),
-                                    end: Offset(1, 1),
-                                    curve: Curves.easeInOut), // Fix here!
+                                  begin: const Offset(0.95, 0.95),
+                                  end: const Offset(1, 1),
+                                  curve: Curves.easeInOut,
+                                ),
                           ),
                         ],
                       ),
@@ -182,30 +177,32 @@ class ContactUsScreen extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle:
-            TextStyle(color: Colors.blue.shade900, fontWeight: FontWeight.w600),
+        labelStyle: const TextStyle(
+            color: AppColors.inputLabel, fontWeight: FontWeight.w600),
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         prefixIcon: Icon(
           label == 'Email'
               ? Icons.email
               : (label == 'Message' ? Icons.message : Icons.person),
-          color: Colors.blue.shade900,
+          color: AppColors.iconColor,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.blue.shade900, width: 1.5),
+          borderSide:
+              const BorderSide(color: AppColors.inputBorder, width: 1.5),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.blue.shade900, width: 2),
+          borderSide:
+              const BorderSide(color: AppColors.inputBorderFocused, width: 2),
         ),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.8),
+        fillColor: AppColors.inputBackground,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       ),
       maxLines: maxLines,
-      style: TextStyle(fontSize: 16, color: Colors.blue.shade900),
+      style: const TextStyle(fontSize: 16, color: AppColors.inputTextColor),
     );
   }
 }
