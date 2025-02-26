@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webapp/controller/home_controller.dart';
+import 'package:webapp/views/email_sms_checker.dart';
+import 'package:webapp/views/password_generator.dart';
 
 class ToolsScreen extends StatelessWidget {
   const ToolsScreen({super.key});
@@ -8,6 +12,7 @@ class ToolsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     bool isMobile = screenWidth < 800;
+    HomeController homeController = Get.find<HomeController>();
 
     return Scaffold(
       body: Container(
@@ -29,7 +34,9 @@ class ToolsScreen extends StatelessWidget {
                   title: 'Email & Message Phishing Checker',
                   description:
                       'Analyze suspicious emails and messages for phishing threats.',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(PhishingCheckerScreen());
+                  },
                 ),
                 const SizedBox(height: 20),
                 _buildToolCard(
@@ -37,7 +44,9 @@ class ToolsScreen extends StatelessWidget {
                   title: 'Strong Password Generator',
                   description:
                       'Generate highly secure passwords for better online safety.',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(PasswordGeneratorScreen());
+                  },
                 ),
                 const SizedBox(height: 20),
                 _buildToolCard(
@@ -45,7 +54,9 @@ class ToolsScreen extends StatelessWidget {
                   title: 'Phishing Website Checker',
                   description:
                       'Use this tool to verify suspicious websites before you enter sensitive data.',
-                  onTap: () {},
+                  onTap: () {
+                    homeController.currentPageIndex.value = 0;
+                  },
                 ),
               ],
             ),
